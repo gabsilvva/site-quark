@@ -1,0 +1,29 @@
+.legal {
+    
+    &__banner {
+      padding: 200px 0 64px 0;
+      margin: 0 0 64px 0;
+      background: $dark-blue;
+  
+      @media (max-width: $sm) {
+        padding: 160px 0 40px 0;
+        margin: 0 0 40px 0;
+      }
+  
+      .container {
+  
+        h1 {
+          text-align: center;
+          color: $white;
+        }
+      }
+    }
+  
+    &__content {
+         
+      .container {
+        max-width: calc(800px + #{$p * 2});
+        @include content();
+      }
+    }
+  }
