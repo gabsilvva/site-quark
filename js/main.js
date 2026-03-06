@@ -56,21 +56,22 @@ new Swiper(".clients .swiper", {
 // FORM
 let url = null;
 
-const btnOpenForm = document.querySelectorAll("a[href='#contato'], button[data-contact]");
-const modal = document.querySelector(".lead");
-const closeModal = modal.querySelector("[data-close]");
+const btns = document.querySelectorAll("a[href='#contato'], button[data-form]");
+const modals = document.querySelectorAll(".lead[data-form]");
 
-btnOpenForm.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const href = btn.href ?? false;
-    url = href;
-
-    modal.classList.add("open");
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = btn.dataset.form || "contato";
+    const modal = document.querySelector(`.lead[data-form="${target}"]`);
+    modal?.classList.add("open");
   });
 });
 
-closeModal.addEventListener("click", () => {
-  modal.classList.remove("open");
+modals.forEach((modal) => {
+  modal.querySelector("[data-close]")?.addEventListener("click", () => {
+    modal.classList.remove("open");
+  });
 });
 
 function getUrlParameter(name) {

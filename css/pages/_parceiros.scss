@@ -1,0 +1,280 @@
+.partners {
+
+  &__banner {
+    padding: 160px 0 120px 0;
+
+    @media (max-width: $sm) {
+      padding: 160px 0 80px 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+        text-align: center;
+        max-width: 800px;
+        width: 100%;
+        margin: 0 0 24px 0;
+        color: $white;
+
+        @media (max-width: $sm) {
+          margin: 0 0 16px 0;
+        }
+      }
+
+      & > p {
+        color: $light-gray;
+        max-width: 750px;
+        width: 100%;
+        text-align: center;
+        margin: 0 0 64px 0;
+
+        @media (max-width: $sm) {
+          margin: 0 0 32px 0;
+        }
+      }
+    }
+
+    & > img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      max-width: initial;
+      z-index: 1;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: $dark-blue;
+      opacity: .8;
+    }
+  }
+
+  &__partner {
+    padding: 120px 0 0 0;
+
+    @media (max-width: $sm) {
+      padding: 80px 0 0 0;
+    }
+
+    .container {
+
+      h2 {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin: 0 0 64px 0;
+
+        @media (max-width: $sm) {
+          gap: 16px;
+          margin: 0 0 40px 0;
+
+          img {
+            width: 48px;
+          }
+        }
+      }
+    }
+
+    & > section {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      padding: 0 8px;
+
+      @media (max-width: $sm) {
+        grid-template-columns: 1fr;
+        padding: 0;
+      }
+
+      aside {
+        border-radius: 8px;
+        padding: 64px 0;
+        background: $dark-blue;
+
+        @media (max-width: $sm) {
+          padding: 40px $pm;
+        }
+
+        article {
+          max-width: 490px;
+          width: 100%;
+          height: 100%;
+
+          @media (max-width: $sm) {
+            max-width: 100%;
+          }
+
+          h4 {
+            color: $white;
+            margin: 0 0 24px 0;
+
+            @media (max-width: $sm) {
+              margin: 0 0 16px 0;
+            }
+          }
+
+          & > p {
+            color: $light-gray;
+
+            &:first-of-type {
+              margin: 0 0 16px 0;
+            }
+
+            strong {
+              color: $light-gray;
+            }
+          }
+
+          ul {
+            margin: 32px 0 0 0;
+
+            @media (max-width: $sm) {
+              margin: 16px 0 0 0;
+            }
+
+            li {
+
+              &:not(:last-of-type) {
+                padding: 0 0 16px 0;
+                margin: 0 0 16px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, .16);
+              }
+
+              p {
+                display: flex;
+                align-items: flex-start;
+                gap: 8px;
+
+                strong {
+                  font: 700 18px/140% $font;
+                  color: $red;
+                }
+
+                span {
+                  color: $white;
+                  font: 700 18px/140% $font;
+
+                  small {
+                    font: 400 14px/140% $font;
+                    color: $light-gray;
+                    opacity: .5;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &:first-of-type {
+          
+          @media (min-width: $sm) {
+            padding-right: 64px;
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+
+        &:last-of-type {
+          
+          @media (min-width: $sm) {
+            padding-left: 64px;
+          }
+        }
+      }
+    }
+
+    & > footer {
+
+      .container {
+
+        section {
+          border-bottom: 1px solid $light-gray;
+          padding: 40px 0;
+
+          @media (max-width: $sm) {
+            padding: 32px 0;
+          }
+
+          p {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 0 40px 0;
+
+            @media (max-width: $sm) {
+              margin: 0 0 24px 0;
+              text-align: center;
+            }
+          }
+
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @media (max-width: $sm) {
+              flex-direction: column;
+            }
+
+            ul {
+              display: flex;
+              align-items: center;
+              gap: 32px;
+
+              @media (max-width: $sm) {
+                margin: 0 0 40px 0;
+                flex-wrap: wrap;
+                gap: 24px 0;
+              }
+
+              li {
+
+                @media (max-width: $sm) {
+                  width: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 0 16px;
+                }
+
+                img {
+                  max-height: 40px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .clients {
+    padding: 0;
+
+    .swiper {
+
+      &-slide {
+        
+        @media (min-width: $sm) {
+          padding: 24px;
+        }
+
+        img {
+          filter: unset;
+        }
+      }
+    }
+  }
+}
