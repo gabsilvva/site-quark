@@ -246,6 +246,7 @@ $sm: 1024px;
 @import "pages/parceiros";
 @import "pages/ecossistema";
 @import "pages/solucao";
+@import "pages/contato";
 
 // ANIMATIONS
 @keyframes marquee {
@@ -275,10 +276,7 @@ $sm: 1024px;
 
 html {
   scroll-behavior: smooth;
-
-  @media (max-width: $sm) {
-    overflow-x: hidden;
-  }
+  overflow-x: hidden;
 
   &.o-hidden {
     overflow: hidden;
@@ -653,6 +651,7 @@ h6 * {
 
         &::after {
           content: url("../assets/svg/arrow-diagonal-red.svg");
+          transform: unset !important;
         }
       }
 
@@ -775,6 +774,7 @@ h6 * {
 .footer {
   margin: 120px 0 0 0;
   background: $dark-blue;
+  border-top: 1px solid rgba(255, 255, 255, .16);
 
   @media (max-width: $sm) {
     margin: 80px 0 0 0;
@@ -823,7 +823,7 @@ h6 * {
                 background: $white;
                 opacity: .16;
                 width: 1px;
-                height: 16px;
+                height: 24px;
                 transform: rotate(4deg);
                 display: block;
                 margin: 0 16px;
@@ -932,6 +932,16 @@ h6 * {
 
   @media (max-width: $sm) {
     padding: 80px 0 0 0;
+  }
+
+  &--pb {
+    
+    section {
+
+      @media (min-width: $sm) {
+        padding-bottom: 120px !important;
+      }
+    }
   }
 
   section {
@@ -1418,11 +1428,16 @@ h6 * {
 
     &:hover {
       background: transparent;
+
+      &::after {
+        transform: translate(4px, 2px);
+      }
     }
 
     &::after {
       content: url("../assets/svg/arrow-right-white.svg");
       transform: translateY(2px);
+      transition: .3s;
     }
 
     &-dark {
@@ -1588,6 +1603,7 @@ h6 * {
       font: 400 12px/130% $font;
 
       a {
+        font-weight: 500;
         text-decoration: underline;
       }
     }
@@ -1664,7 +1680,7 @@ h6 * {
     &::after {
       top: 0;
       right: 0;
-      transform: translate(50%, -50%);
+      transform: translate(65%, -50%);
     }
   }
 
@@ -1673,7 +1689,7 @@ h6 * {
     &::after {
       bottom: 0;
       right: 0;
-      transform: translate(50%, 50%);
+      transform: translate(65%, 50%);
     }
   }
 
@@ -1682,7 +1698,7 @@ h6 * {
     &::after {
       top: 0;
       left: 0;
-      transform: translate(-50%, -50%);
+      transform: translate(-65%, -50%);
     }
   }
 
@@ -1691,7 +1707,7 @@ h6 * {
     &::after {
       bottom: 0;
       left: 0;
-      transform: translate(50%, -50%);
+      transform: translate(-50%, 50%);
     }
   }
 
@@ -1700,7 +1716,7 @@ h6 * {
     &::after {
       top: 0;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-65%, -50%);
     }
   }
 
@@ -1709,7 +1725,7 @@ h6 * {
     &::after {
       bottom: 0;
       left: 50%;
-      transform: translate(-50%, 50%);
+      transform: translate(-65%, 50%);
     }
   }
 }
@@ -1831,6 +1847,139 @@ h6 * {
 
         @media (max-width: $sm) {
           max-height: 48px;
+        }
+      }
+    }
+  }
+
+  &__cards {
+    padding: 48px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: hidden;
+
+    @media (max-width: $sm) {
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid $light-gray;
+      padding: 0;
+      width: calc(100% + #{$pm * 2});
+      transform: translateX(-#{$pm});
+    }
+
+    li {
+      background: rgba(238, 238, 238, .32);
+      border-top: 1px solid $light-gray;
+      border-bottom: 1px solid $light-gray;
+      position: relative;
+      margin: 0 0 -1px 0;
+      padding: 32px;
+
+      @media (max-width: $sm) {
+        padding: $pm;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        left: -1px;
+        height: calc(100% + 96px);
+        background: $light-gray;
+
+        @media (max-width: $sm) {
+          height: 100%;
+          right: -1px;
+          left: unset;
+          transform: unset;
+          top: 0;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: calc(100% + 96px);
+        right: 0;
+        background: $light-gray;
+
+        @media (max-width: $sm) {
+          display: none;
+        }
+      }
+
+      &:hover {
+
+        figure {
+
+          img {
+            filter: unset;
+          }
+        }
+      }
+
+      figure {
+        height: 48px;
+        display: flex;
+        align-items: center;
+
+        img {
+          filter: grayscale(100%);
+          max-height: 100%;
+        }
+      }
+
+      h6 {
+        color: $black;
+        font: 600 12px/1 $font;
+        margin: 80px 0 16px 0;
+
+        @media (max-width: $sm) {
+          margin: 40px 0 16px 0;
+        }
+      }
+
+      p {
+        font-size: 14px;
+
+        @media (max-width: $sm) {
+          font-size: 12px;
+        }
+      }
+
+      &:last-of-type {
+        background: $dark-blue;
+        display: flex;
+        flex-direction: column;
+
+        h5 {
+          font-size: 20px;
+          color: $white;
+          margin: 0 0 24px 0;
+
+          @media (max-width: $sm) {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+          }
+        }
+
+        p {
+          font-size: 16px;
+          flex: 2;
+          color: $light-gray;
+          margin: 0 0 32px 0;
+
+          @media (max-width: $sm) {
+            font-size: 14px;
+          }
+
+          @media (max-width: $sm) {
+            margin: 0 0 24px 0;
+          }
         }
       }
     }
@@ -2073,7 +2222,6 @@ h6 * {
     ul {
       margin: 40px 0 0 0;
       padding: 48px 0;
-      border-left: 1px solid $light-gray;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
 
@@ -2081,6 +2229,7 @@ h6 * {
         padding: 0;
         margin: 32px 0 0 0;
         grid-template-columns: repeat(2, 1fr);
+        border-left: 1px solid $light-gray;
         border-bottom: 1px solid $light-gray;
         border-right: 1px solid $light-gray;
       }
@@ -2103,7 +2252,7 @@ h6 * {
           top: 50%;
           transform: translateY(-50%);
           width: 1px;
-          left: 0;
+          left: -1px;
           height: calc(100% + 96px);
           background: $light-gray;
 
@@ -2128,10 +2277,6 @@ h6 * {
           @media (max-width: $sm) {
             display: none;
           }
-        }
-
-        &::before {
-          left: -1px;
         }
 
         &:hover {
