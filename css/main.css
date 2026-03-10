@@ -3656,6 +3656,162 @@
   }
 }
 
+.private {
+  background: #151E30;
+}
+.private__banner {
+  position: relative;
+  padding: 200px 0 120px 0;
+  background: linear-gradient(45deg, rgb(27, 38, 59) 20%, rgb(21, 30, 48) 100%);
+  overflow: hidden;
+}
+@media (max-width: 1024px) {
+  .private__banner {
+    padding: 144px 0 8px 0;
+  }
+}
+.private__banner .container {
+  display: flex;
+  gap: 8px;
+  position: relative;
+  z-index: 5;
+}
+@media (max-width: 1024px) {
+  .private__banner .container {
+    flex-direction: column;
+    padding: 0 8px;
+  }
+}
+.private__banner__text {
+  display: flex;
+  justify-content: flex-end;
+}
+.private__banner__text article {
+  max-width: 725px;
+  width: 100%;
+  margin: 0 0 0 auto;
+}
+@media (max-width: 1024px) {
+  .private__banner__text article {
+    max-width: 100%;
+  }
+  .private__banner__text article .countries {
+    padding: 0 16px;
+  }
+}
+.private__banner__text article h1 {
+  color: #FFFFFF;
+  font-size: 48px;
+  margin: 0 0 80px 0;
+  max-width: 650px;
+  width: 100%;
+}
+@media (max-width: 1024px) {
+  .private__banner__text article h1 {
+    font-size: 30px;
+    margin: 0 0 24px 0;
+    padding: 0 16px;
+  }
+}
+.private__banner__text article section {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+}
+@media (max-width: 1024px) {
+  .private__banner__text article section {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+.private__banner__text article section div {
+  padding: 32px 0;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-between;
+}
+@media (max-width: 1024px) {
+  .private__banner__text article section div {
+    padding: 0 16px;
+    gap: 8px;
+  }
+}
+.private__banner__text article section div p {
+  color: #EEEEEE;
+}
+.private__banner__text article section a {
+  max-width: 265px;
+  width: 100%;
+  border-radius: 8px;
+  background: #ED3237;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 32px;
+  gap: 40px;
+  min-height: 240px;
+}
+@media (max-width: 1024px) {
+  .private__banner__text article section a {
+    min-height: auto;
+    max-width: 100%;
+    padding: 24px;
+  }
+}
+.private__banner__text article section a p {
+  font: 700 18px/140% "Manrope", sans-serif;
+  color: #FFFFFF;
+}
+@media (max-width: 1024px) {
+  .private__banner__text article section a p {
+    padding: 0 64px 0 0;
+  }
+}
+.private__banner__image {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+.private__banner__image .selo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 1024px) {
+  .private__banner__image .selo {
+    transform: translateY(-50%);
+    top: 0;
+    right: 16px;
+    left: unset;
+  }
+}
+.private__banner__image > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.private__banner > img {
+  position: absolute;
+  top: -550px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: initial;
+  z-index: 1;
+}
+.private .partners-sec .container header h2 {
+  color: #FFFFFF;
+}
+.private .partners-sec .container header p {
+  color: #EEEEEE;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -3700,6 +3856,9 @@ body {
 }
 body figure {
   margin: 0;
+}
+body.bg {
+  background: #151E30;
 }
 
 button,
@@ -5537,11 +5696,13 @@ h6 * {
   align-items: center;
   justify-content: space-between;
   margin: 0 0 64px 0;
+  gap: 16px;
 }
 @media (max-width: 1024px) {
   .partners-sec .container header {
     margin: 0 0 40px 0;
     padding: 0 24px;
+    flex-direction: column;
   }
   .partners-sec .container header .button {
     display: none;
@@ -5551,11 +5712,16 @@ h6 * {
   max-width: 600px;
   width: 100%;
 }
+.partners-sec .container header p {
+  max-width: 460px;
+  width: 100%;
+}
 .partners-sec .container > a {
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
   padding: 8px;
+  border: 1px solid rgba(238, 238, 238, 0.16);
   background: #151E30;
 }
 @media (max-width: 1024px) {

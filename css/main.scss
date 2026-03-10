@@ -247,6 +247,7 @@ $sm: 1024px;
 @import "pages/ecossistema";
 @import "pages/solucao";
 @import "pages/contato";
+@import "pages/private";
 
 // ANIMATIONS
 @keyframes marquee {
@@ -288,6 +289,10 @@ body {
 
   figure {
     margin: 0;
+  }
+
+  &.bg {
+    background: $dark-blue;
   }
 }
 
@@ -2374,10 +2379,12 @@ h6 * {
       align-items: center;
       justify-content: space-between;
       margin: 0 0 64px 0;
+      gap: 16px;
 
       @media (max-width: $sm) {
         margin: 0 0 40px 0;
         padding: 0 $pm;
+        flex-direction: column;
 
         .button {
           display: none;
@@ -2388,6 +2395,11 @@ h6 * {
         max-width: 600px;
         width: 100%;
       }
+
+      p {
+        max-width: 460px;
+        width: 100%;
+      }
     }
 
     & > a {
@@ -2395,6 +2407,7 @@ h6 * {
       justify-content: space-between;
       border-radius: 8px;
       padding: 8px;
+      border: 1px solid rgba(238, 238, 238, .16);
       background: $dark-blue;
 
       @media (max-width: $sm) {
