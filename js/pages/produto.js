@@ -14,6 +14,10 @@ btnsTabs.forEach((btn) => {
 });
 
 new Swiper(".product__top .swiper", {
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
   navigation: {
     prevEl: ".product__top .swiper-prev",
     nextEl: ".product__top .swiper-next",

@@ -1,6 +1,10 @@
 new Swiper(".solution__cards .swiper", {
   loop: true,
   spaceBetween: 8,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
   breakpoints: {
     300: {
       slidesPerView: 1,
@@ -20,6 +24,11 @@ new Swiper(".solution__cards .swiper", {
 
 new Swiper(".solution__cards2 .swiper", {
   spaceBetween: 8,
+  loop: true,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
   breakpoints: {
     300: {
       slidesPerView: 1,

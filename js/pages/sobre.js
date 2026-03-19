@@ -1,6 +1,11 @@
 // TEAM
 new Swiper(".about__team .swiper", {
   spaceBetween: 8,
+  loop: true,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
   breakpoints: {
     300: {
       slidesPerView: 1,

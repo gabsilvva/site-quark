@@ -89,108 +89,99 @@
 
     & > section {
       position: relative;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
       padding: 0 8px;
 
       @media (max-width: $sm) {
-        grid-template-columns: 1fr;
         padding: 0;
       }
-
-      aside {
-        border-radius: 8px;
-        padding: 64px 0;
-        background: $dark-blue;
+      
+      .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
 
         @media (max-width: $sm) {
-          padding: 40px $pm;
+          grid-template-columns: 1fr;
+          padding: 0;
         }
 
-        article {
-          max-width: 490px;
-          width: 100%;
-          height: 100%;
-
+        aside {
+          border-radius: 8px;
+          padding: 48px;
+          background: $dark-blue;
+  
           @media (max-width: $sm) {
-            max-width: 100%;
+            padding: 40px $pm;
           }
-
-          h4 {
-            color: $white;
-            margin: 0 0 24px 0;
-
+  
+          article {
+            max-width: 490px;
+            width: 100%;
+            height: 100%;
+  
             @media (max-width: $sm) {
-              margin: 0 0 16px 0;
+              max-width: 100%;
             }
-          }
-
-          & > p {
-            color: $light-gray;
-
-            &:first-of-type {
-              margin: 0 0 16px 0;
-            }
-
-            strong {
-              color: $light-gray;
-            }
-          }
-
-          ul {
-            margin: 32px 0 0 0;
-
-            @media (max-width: $sm) {
-              margin: 16px 0 0 0;
-            }
-
-            li {
-
-              &:not(:last-of-type) {
-                padding: 0 0 16px 0;
+  
+            h4 {
+              color: $white;
+              margin: 0 0 24px 0;
+  
+              @media (max-width: $sm) {
                 margin: 0 0 16px 0;
-                border-bottom: 1px solid rgba(255, 255, 255, .16);
               }
-
-              p {
-                display: flex;
-                align-items: flex-start;
-                gap: 8px;
-
-                strong {
-                  font: 700 18px/140% $font;
-                  color: $red;
+            }
+  
+            & > p {
+              color: $light-gray;
+  
+              &:first-of-type {
+                margin: 0 0 16px 0;
+              }
+  
+              strong {
+                color: $light-gray;
+              }
+            }
+  
+            ul {
+              margin: 32px 0 0 0;
+  
+              @media (max-width: $sm) {
+                margin: 16px 0 0 0;
+              }
+  
+              li {
+  
+                &:not(:last-of-type) {
+                  padding: 0 0 16px 0;
+                  margin: 0 0 16px 0;
+                  border-bottom: 1px solid rgba(255, 255, 255, .16);
                 }
-
-                span {
-                  color: $white;
-                  font: 700 18px/140% $font;
-
-                  small {
-                    font: 400 14px/140% $font;
-                    color: $light-gray;
-                    opacity: .5;
+  
+                p {
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 8px;
+  
+                  strong {
+                    font: 700 18px/140% $font;
+                    color: $red;
+                  }
+  
+                  span {
+                    color: $white;
+                    font: 700 18px/140% $font;
+  
+                    small {
+                      font: 400 14px/140% $font;
+                      color: $light-gray;
+                      opacity: .5;
+                    }
                   }
                 }
               }
             }
-          }
-        }
-
-        &:first-of-type {
-          
-          @media (min-width: $sm) {
-            padding-right: 64px;
-            display: flex;
-            justify-content: flex-end;
-          }
-        }
-
-        &:last-of-type {
-          
-          @media (min-width: $sm) {
-            padding-left: 64px;
           }
         }
       }

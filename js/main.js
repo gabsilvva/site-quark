@@ -1,4 +1,4 @@
-  //NAV
+//NAV
 const nav = document.querySelector(".nav");
 
 nav.querySelector(".nav__principal__button")?.addEventListener("click", () => {
@@ -451,4 +451,79 @@ document.querySelector("[data-top]")?.addEventListener("click", () => {
     window.AniEntrada = AniEntrada;
   }
 
+})();
+
+// BIG NUMBERS
+(function () {
+  const parseValue = (text) => {
+    text = text.trim();
+
+    const triBi = text.match(/^(R\$\s*)?([\d,.]+)\s*(Tri|Bi)$/i);
+    if (triBi) {
+      return {
+        prefix: triBi[1] || '',
+        value: parseFloat(triBi[2].replace(',', '.')),
+        suffix: ' ' + triBi[3],
+      };
+    }
+
+    const plus = text.match(/^\+(\d+)(.*)$/);
+    if (plus) {
+      return { prefix: '+', value: parseInt(plus[1]), suffix: plus[2] };
+    }
+
+    const ordinal = text.match(/^(\d+)(º|ª)$/);
+    if (ordinal) {
+      return { prefix: '', value: parseInt(ordinal[1]), suffix: ordinal[2] };
+    }
+
+    return null;
+  };
+
+  const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+  const animateCounter = (el, duration = 1800) => {
+    const original = el.textContent;
+    const parsed = parseValue(original);
+    if (!parsed) return;
+
+    const { prefix, value, suffix } = parsed;
+    const isFloat = value % 1 !== 0;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutExpo(progress);
+      const current = value * eased;
+
+      el.textContent =
+        prefix +
+        (isFloat ? current.toFixed(1) : Math.round(current)) +
+        suffix;
+
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = original;
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target
+            .querySelectorAll('li h3')
+            .forEach((h3) => animateCounter(h3));
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  document
+    .querySelectorAll('.home__numbers .container > div')
+    .forEach((block) => observer.observe(block));
 })();

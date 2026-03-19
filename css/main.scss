@@ -252,12 +252,6 @@ $sm: 1024px;
 @import "pages/loja";
 @import "utils/animations";
 
-// ANIMATIONS
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
-}
-
 // RESETS
 ::selection {
   background: $red;
@@ -410,7 +404,7 @@ h6 * {
 
     ul {
       display: flex;
-      animation: marquee 32s linear infinite;
+      animation: marquee 15s linear infinite;
 
       li {
         padding: 0 24px;
@@ -953,9 +947,11 @@ h6 * {
 
 .emphasis {
   padding: 120px 8px 0 8px;
+  margin: 0 0 -112px 0;
 
   @media (max-width: $sm) {
     padding: 80px 0 0 0;
+    margin: 0 0 -72px 0;
   }
 
   &--pb {
@@ -1000,10 +996,10 @@ h6 * {
       width: 100%;
       height: 100%;
       z-index: 5;
-      background: linear-gradient(45deg,rgba(21, 30, 48, 1) 0%, rgba(21, 30, 48, 0) 100%);
+      background: linear-gradient(45deg,rgba(21, 30, 48, 1) 20%, rgba(21, 30, 48, 0) 100%);
 
       @media (max-width: $sm) {
-        background: linear-gradient(0deg,rgba(21, 30, 48, 1) 50%, rgba(21, 30, 48, 0) 100%);
+        background: linear-gradient(0deg,rgba(21, 30, 48, 1) 80%, rgba(21, 30, 48, 0) 100%);
       }
     }
 
@@ -1016,20 +1012,20 @@ h6 * {
         align-items: center;
         justify-content: space-between;
         gap: 24px;
-        margin: 0 0 64px 0;
+        margin: 0 0 80px 0;
 
         @media (max-width: $sm) {
-          margin: 0 0 32px 0;
+          margin: 0 0 40px 0;
           align-items: flex-start;
           flex-direction: column-reverse;
         }
 
         div {
-          max-width: 640px;
+          max-width: 680px;
           width: 100%;
 
           h3 {
-            margin: 0 0 32px 0;
+            margin: 0 0 40px 0;
             color: $white;
 
             @media (max-width: $sm) {
@@ -1159,6 +1155,18 @@ h6 * {
               margin: 0;
             }
           }
+
+          &:hover {
+            background: $white;
+
+            small {
+              color: $red;
+            }
+
+            p {
+              color: $black;
+            }
+          }
         }
       }
 
@@ -1173,19 +1181,25 @@ h6 * {
   }
 
   footer {
-    padding: 20px 0;
+    padding: 24px 0;
     background: $dark-blue;
     overflow: hidden;
-    display: flex;
     border-radius: 0 0 8px 8px;
 
     @media (max-width: $sm) {
       border-top: 1px solid rgba(255, 255, 255, .16);
     }
 
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-33.333%); }
+    }
+
     ul {
-      animation: marquee 32s linear infinite;
       display: flex;
+      flex-shrink: 0;
+      width: max-content;
+      animation: marquee 15s linear infinite;
 
       li {
 
@@ -1218,6 +1232,7 @@ h6 * {
   background: rgba(255, 255, 255, .08);
   backdrop-filter: blur(16px);
   border-radius: 1000px;
+  animation: float 3s ease-in-out infinite;
 
   @media (max-width: $sm) {
     width: 120px;
@@ -1231,6 +1246,11 @@ h6 * {
 
   &--golden {
     background: $safra_golden;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-24px); }
   }
 }
 
@@ -2213,7 +2233,7 @@ h6 * {
 
     section {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
 
       @media (max-width: $sm) {
         grid-template-columns: 1fr;
@@ -2429,6 +2449,10 @@ h6 * {
       border: 1px solid rgba(238, 238, 238, .16);
       background: $dark-blue;
 
+      &:hover {
+        background: $red;
+      }
+
       @media (max-width: $sm) {
         display: block;
       }
@@ -2513,6 +2537,41 @@ h6 * {
       @media (min-width: $sm) {
         display: none;
       }
+    }
+  }
+}
+
+.highlight {
+
+  i {
+    position: relative;
+    font-style: initial;
+    color: $white;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: $red;
+      z-index: 1;
+      height: 75%;
+      animation: 4s width forwards;
+    }
+
+    @keyframes width {
+      from {
+        width: 0;
+      } to {
+        width: calc(100% + 8px);
+      }
+    }
+
+    strong {
+      position: relative;
+      z-index: 5;
+      color: $white;
     }
   }
 }

@@ -412,10 +412,8 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-
-          @media (max-width: $sm) {
-            width: calc(100% - #{$pm * 2});
-          }
+          z-index: 5;
+          white-space: nowrap;
         }
       }
     }

@@ -16,6 +16,10 @@ solutions.addEventListener("click", (e) => {
 // SOLUÇÕES
 new Swiper(".home__solutions .swiper", {
   loop: true,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
   navigation: {
     prevEl: ".home__solutions .swiper-prev",
     nextEl: ".home__solutions .swiper-next",
