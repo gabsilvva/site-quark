@@ -220,10 +220,11 @@ $sm: 1024px;
     h3,
     h4,
     h5,
-    h6 {
+    h6,
+    p {
       margin: 0 0 8px 0;
       color: $black;
-      font: 700 20px/120% $font;
+      font: 700 20px/130% $font;
 
       &::before,
       &::after {
@@ -248,6 +249,8 @@ $sm: 1024px;
 @import "pages/solucao";
 @import "pages/contato";
 @import "pages/private";
+@import "pages/loja";
+@import "utils/animations";
 
 // ANIMATIONS
 @keyframes marquee {
@@ -678,6 +681,15 @@ h6 * {
       }
     }
 
+    &__link {
+      gap: 12px !important;
+
+      &::after {
+        content: url("../assets/svg/arrow-diagonal-red.svg") !important;
+        transform: unset !important;
+      }
+    }
+
     &__button {
       display: none;
       width: 32px;
@@ -742,6 +754,13 @@ h6 * {
         @media (max-width: $sm) {
           height: calc(100% - 72px);
         }
+      }
+    }
+
+    &.nav--white {
+      
+      .nav__principal {
+        background: $white;
       }
     }
   }
@@ -1388,7 +1407,7 @@ h6 * {
   text-align: center;
   color: $white;
   background: $red;
-  font: 600 15px/100% $font;
+  font: 600 15px/120% $font;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1721,7 +1740,7 @@ h6 * {
     &::after {
       top: 0;
       left: 50%;
-      transform: translate(-65%, -50%);
+      transform: translate(-50%, -50%);
     }
   }
 
@@ -1730,7 +1749,7 @@ h6 * {
     &::after {
       bottom: 0;
       left: 50%;
-      transform: translate(-65%, 50%);
+      transform: translate(-50%, 50%);
     }
   }
 }

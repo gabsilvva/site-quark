@@ -1,7 +1,7 @@
-//NAV
+  //NAV
 const nav = document.querySelector(".nav");
 
-nav.querySelector(".nav__principal__button").addEventListener("click", () => {
+nav.querySelector(".nav__principal__button")?.addEventListener("click", () => {
   nav.classList.toggle("nav--open");
   document.documentElement.classList.toggle("o-hidden");
 });
@@ -325,3 +325,130 @@ forms.forEach((form) => {
     }
   });
 });
+
+// BACK TO TOP
+document.querySelector("[data-top]")?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ANIMATIONS
+(function () {
+  'use strict';
+
+  class AniEntrada {
+    constructor(options = {}) {
+      this.config = {
+        threshold:  options.threshold  ?? 0.15,
+        rootMargin: options.rootMargin ?? '0px 0px -40px 0px',
+        once:       options.once       ?? true,
+        selector:   options.selector   ?? "[class*='ani-']",
+        waveDelay:  options.waveDelay  ?? 40,
+      };
+
+      this._prepareWaveElements();
+      this._createObserver();
+      this._observe();
+    }
+
+    _prepareWaveElements() {
+      document.querySelectorAll('.ani-wave').forEach(el => {
+        if (el.dataset.waveReady) return; // Evita duplicar
+
+        const text = el.textContent;
+        el.innerHTML = text
+          .split('')
+          .map((char, i) => {
+            const delay = i * this.config.waveDelay;
+            const content = char === ' ' ? '&nbsp;' : char;
+            return `<span class="char" style="transition-delay:${delay}ms">${content}</span>`;
+          })
+          .join('');
+
+        el.dataset.waveReady = 'true';
+      });
+    }
+
+    _createObserver() {
+      this.observer = new IntersectionObserver(
+        (entries) => this._handleEntries(entries),
+        {
+          threshold:  this.config.threshold,
+          rootMargin: this.config.rootMargin,
+        }
+      );
+    }
+
+    _observe() {
+      this.elements = document.querySelectorAll(this.config.selector);
+      this.elements.forEach(el => this.observer.observe(el));
+    }
+
+    _handleEntries(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('played');
+
+          if (this.config.once) {
+            this.observer.unobserve(entry.target);
+          }
+        } else if (!this.config.once) {
+          entry.target.classList.remove('played');
+        }
+      });
+    }
+
+    replay() {
+      this.elements.forEach(el => {
+        el.classList.remove('played');
+        this.observer.observe(el);
+      });
+    }
+
+    destroy() {
+      this.observer.disconnect();
+    }
+
+    add(target) {
+      let elements;
+
+      if (typeof target === 'string') {
+        elements = document.querySelectorAll(target);
+      } else if (target instanceof Element) {
+        elements = [target];
+      } else if (target instanceof NodeList || Array.isArray(target)) {
+        elements = target;
+      } else {
+        console.warn('[AniEntrada] add(): tipo inválido', target);
+        return;
+      }
+
+      elements.forEach(el => {
+        if (el.classList.contains('ani-wave') && !el.dataset.waveReady) {
+          this._prepareWaveElements();
+        }
+        this.observer.observe(el);
+      });
+    }
+
+    playNow(el) {
+      el.classList.add('played');
+    }
+  }
+
+  function autoInit() {
+    window.aniEntrada = new AniEntrada();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoInit);
+  } else {
+    autoInit();
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = AniEntrada;
+  } else if (typeof window !== 'undefined') {
+    window.AniEntrada = AniEntrada;
+  }
+
+})();

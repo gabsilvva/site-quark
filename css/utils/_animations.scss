@@ -1,0 +1,207 @@
+// ─────────────────────────────────────────────────────────────
+// animations.scss — Biblioteca de Animações de Entrada
+// Uso: adicione classes ani-* em qualquer elemento.
+// O JS (animations.js) cuida de adicionar .played via IntersectionObserver.
+// ─────────────────────────────────────────────────────────────
+
+// ── Configurações ──────────────────────────────────────────
+$ani-easing:        cubic-bezier(0.22, 1, 0.36, 1);
+$ani-easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+$ani-easing-glitch: steps(4, end);
+
+$ani-duration-fast:  0.3s;
+$ani-duration-base:  0.6s;
+$ani-duration-slow:  1s;
+$ani-duration-xslow: 1.6s;
+
+$ani-distance-sm: 24px;
+$ani-distance-md: 40px;
+$ani-distance-lg: 80px;
+
+// ── Estado inicial de todos os elementos ani-* ─────────────
+[class*="ani-"] {
+  opacity: 0;
+  transition-timing-function: $ani-easing;
+  transition-duration: $ani-duration-base;
+  transition-property: opacity, transform, filter, clip-path;
+  will-change: opacity, transform;
+}
+
+// ── Estado final (aplicado pelo JS) ───────────────────────
+[class*="ani-"].played {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: none;
+}
+
+// ═══════════════════════════════════════════════════════════
+// FADE
+// ═══════════════════════════════════════════════════════════
+.ani-fade            { /* só opacity, sem transform */ }
+.ani-fade-up         { transform: translateY($ani-distance-md); }
+.ani-fade-down       { transform: translateY(-$ani-distance-md); }
+.ani-fade-left       { transform: translateX($ani-distance-md); }
+.ani-fade-right      { transform: translateX(-$ani-distance-md); }
+.ani-fade-up-big     { transform: translateY($ani-distance-lg); }
+
+// ═══════════════════════════════════════════════════════════
+// ZOOM
+// ═══════════════════════════════════════════════════════════
+.ani-zoom-in         { transform: scale(0.75); }
+.ani-zoom-out        { transform: scale(1.2); }
+.ani-zoom-up         { transform: scale(0.85) translateY(30px); }
+
+// ═══════════════════════════════════════════════════════════
+// FLIP 3D
+// ═══════════════════════════════════════════════════════════
+.ani-flip-x {
+  transform: perspective(600px) rotateX(60deg);
+  transform-origin: top;
+}
+.ani-flip-y {
+  transform: perspective(600px) rotateY(60deg);
+  transform-origin: left;
+}
+
+// ═══════════════════════════════════════════════════════════
+// SLIDE (clip-path reveal)
+// ═══════════════════════════════════════════════════════════
+.ani-slide-up    { clip-path: inset(100% 0 0 0); }
+.ani-slide-down  { clip-path: inset(0 0 100% 0); }
+.ani-slide-left  { clip-path: inset(0 0 0 100%); }
+.ani-slide-right { clip-path: inset(0 100% 0 0); }
+
+.ani-slide-up.played,
+.ani-slide-down.played,
+.ani-slide-left.played,
+.ani-slide-right.played { clip-path: inset(0 0 0 0); }
+
+// ═══════════════════════════════════════════════════════════
+// BLUR
+// ═══════════════════════════════════════════════════════════
+.ani-blur    { filter: blur(20px); transform: scale(1.02); }
+.ani-blur-up { filter: blur(16px); transform: translateY($ani-distance-sm); }
+
+// ═══════════════════════════════════════════════════════════
+// BOUNCE / SPRING (usa easing elástico)
+// ═══════════════════════════════════════════════════════════
+.ani-bounce-in {
+  transform: scale(0.5);
+  transition-timing-function: $ani-easing-bounce;
+}
+.ani-bounce-up {
+  transform: translateY($ani-distance-lg * 0.75);
+  transition-timing-function: $ani-easing-bounce;
+}
+
+// ═══════════════════════════════════════════════════════════
+// ROTATE / SKEW
+// ═══════════════════════════════════════════════════════════
+.ani-rotate-in  { transform: rotate(-15deg) scale(0.85); }
+.ani-rotate-left {
+  transform: rotate(-90deg) translateX(-$ani-distance-md);
+  transform-origin: left center;
+}
+.ani-skew-up    { transform: skewY(8deg) translateY($ani-distance-md); }
+.ani-skew-left  { transform: skewX(-12deg) translateX($ani-distance-md); }
+
+// ═══════════════════════════════════════════════════════════
+// GLITCH (especial — animação via keyframes)
+// ═══════════════════════════════════════════════════════════
+.ani-glitch {
+  filter: blur(4px);
+  transform: skewX(10deg) translateX(30px);
+  transition-timing-function: $ani-easing-glitch;
+
+  &.played {
+    filter: none;
+    transform: none;
+    animation: ani-glitch-settle 0.4s steps(4) forwards;
+  }
+}
+
+@keyframes ani-glitch-settle {
+  0%   { clip-path: inset(30% 0 50% 0); transform: translateX(-6px); }
+  25%  { clip-path: inset(10% 0 70% 0); transform: translateX(6px); }
+  50%  { clip-path: inset(60% 0 20% 0); transform: translateX(-3px); }
+  75%  { clip-path: inset(0% 0 80% 0);  transform: translateX(3px); }
+  100% { clip-path: none;               transform: none; }
+}
+
+// ═══════════════════════════════════════════════════════════
+// TYPEWRITER (especial — usa max-width)
+// ═══════════════════════════════════════════════════════════
+.ani-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 1 !important; // Sobrescreve o opacity: 0 do [class*="ani-"]
+
+  &.played {
+    animation: ani-typewriter 0.7s steps(20, end) forwards;
+  }
+}
+
+@keyframes ani-typewriter {
+  from { max-width: 0; }
+  to   { max-width: 100%; }
+}
+
+// ═══════════════════════════════════════════════════════════
+// WAVE (o JS quebra o texto em .char individuais)
+// ═══════════════════════════════════════════════════════════
+.ani-wave {
+  overflow: hidden;
+
+  .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    transition:
+      opacity 0.4s $ani-easing,
+      transform 0.5s $ani-easing-bounce;
+  }
+
+  &.played .char {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// DURAÇÕES (sobrescrevem o transition-duration)
+// ═══════════════════════════════════════════════════════════
+.ani-dur-fast  { transition-duration: $ani-duration-fast !important; }
+.ani-dur-base  { transition-duration: $ani-duration-base !important; }
+.ani-dur-slow  { transition-duration: $ani-duration-slow !important; }
+.ani-dur-xslow { transition-duration: $ani-duration-xslow !important; }
+
+// ═══════════════════════════════════════════════════════════
+// DELAYS (0.1s a 1.5s)
+// ═══════════════════════════════════════════════════════════
+
+// Mixin utilitário para gerar delays
+@mixin ani-delays($delays...) {
+  @each $delay in $delays {
+    $ms: $delay * 100;
+    .ani-delay-#{$ms} { transition-delay: #{$delay * 0.1}s; }
+  }
+}
+
+// Gera: ani-delay-100 até ani-delay-1500
+@include ani-delays(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15);
+
+// Delays explícitos para clareza (equivalentes ao mixin acima)
+// .ani-delay-100  → 0.1s
+// .ani-delay-200  → 0.2s
+// .ani-delay-300  → 0.3s
+// .ani-delay-400  → 0.4s
+// .ani-delay-500  → 0.5s
+// .ani-delay-600  → 0.6s
+// .ani-delay-700  → 0.7s
+// .ani-delay-800  → 0.8s
+// .ani-delay-900  → 0.9s
+// .ani-delay-1000 → 1.0s
+// .ani-delay-1200 → 1.2s
+// .ani-delay-1500 → 1.5s

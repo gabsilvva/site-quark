@@ -1,0 +1,462 @@
+.store {
+
+  &__banner {
+    padding: 160px 0 120px 0;
+    overflow: hidden;
+    border-bottom: 1px solid $light-gray;
+    background: rgba(238, 238, 238, .32);
+    position: relative;
+
+    @media (max-width: $sm) {
+      padding: 144px 0 80px 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 5;
+
+      h1 {
+        max-width: 900px;
+        width: 100%;
+      }
+    }
+
+    & > img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 65%);
+      max-width: initial;
+      z-index: 1;
+    }
+  }
+
+  &__list {
+    padding: 120px 0 0 0;
+
+    @media (max-width: $sm) {
+      padding: 80px 0 0 0;
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+      margin: 0 0 64px 0;
+
+      @media (max-width: $sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 0 40px 0;
+      }
+    }
+  }
+}
+
+.card-product {
+  border: 1px solid $light-gray;
+  background: $white;
+  border-radius: 8px;
+  display: block;
+  height: 100%;
+  padding: 8px;
+
+  &:hover {
+    box-shadow: 0 24px 48px 24px rgba(0, 0, 0, .08);
+  }
+
+  figure {
+    background: $light-gray;
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    border-radius: 8px;
+    justify-content: center;
+
+    img {
+      max-height: 100%;
+    }
+  }
+
+  div {
+    padding: 24px;
+
+    .subtitle {
+      font-size: 12px;
+      display: block;
+      margin: 0 0 8px 0;
+    }
+
+    h5 {
+      margin: 0 0 12px 0;
+    }
+
+    h6 {
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0 0 24px 0;
+      padding: 0 0 24px 0;
+      border-bottom: 1px solid $light-gray;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+}
+
+.store-attrs {
+  padding: 120px 0 0 0;
+
+  @media (max-width: $sm) {
+    padding: 80px 0 0 0;
+  }
+
+  .container {
+
+    h2 {
+      text-align: center;
+      margin: 0 0 96px 0;
+
+      @media (max-width: $sm) {
+        margin: 0 0 64px 0;
+      }
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 8px;
+
+      @media (max-width: $sm) {
+        grid-template-columns: 1fr;
+      }
+
+      li {
+        position: relative;
+        border: 1px solid $light-gray;
+        padding: 56px 32px 40px 32px;
+
+        figure {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: $white;
+          border-radius: 1000px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 64px;
+          height: 64px;
+          border: 1px solid $light-gray;
+          margin: 0 0 24px 0;
+        }
+
+        h5 {
+          text-align: center;
+          margin: 0 0 24px 0;
+
+          @media (max-width: $sm) {
+            margin: 0 0 16px 0;
+          }
+        }
+
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.product {
+
+  &__top {
+    overflow: hidden;
+    border-bottom: 1px solid $light-gray;
+    background: rgba(238, 238, 238, .32);
+    position: relative;
+    padding:  120px 0;
+
+    @media (max-width: $sm) {
+      padding: 96px 0 80px 0;
+    }
+
+    & > img {
+      position: absolute;
+      top: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      max-width: initial;
+    }
+
+    .container {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 80px;
+
+      @media (max-width: $sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+      }
+    }
+
+    &__images {
+      position: relative;
+      max-width: 550px;
+      width: 100%;
+
+      .swiper {
+        border-radius: 8px;
+
+        &-slide {
+          background: $light-gray;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 8px;
+          height: 480px;
+          padding: $pm;
+
+          @media (max-width: $sm) {
+            height: 300px;
+          }
+
+          img {
+            max-height: 400px;
+          }
+        }
+
+        &-prev,
+        &-next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 9;
+        }
+
+        &-prev {
+          left: $pm;
+
+          @media (max-width: $sm) {
+            left: -24px;
+          }
+        }
+
+        &-next {
+          right: $pm;
+
+          @media (max-width: $sm) {
+            right: -24px;
+          }
+        }
+      }
+    }
+
+    &__text {
+      max-width: 500px;
+      width: 100%;
+
+      &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 24px 0;
+
+        @media (max-width: $sm) {
+          margin: 0 0 16px 0;
+        }
+
+        div {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+  
+          p {
+            line-height: 1;
+          }
+  
+          .subtitle {
+            margin: 0;
+            color: $black;
+          }
+        }
+
+        small {
+          color: $gray;
+          font: 400 12px/1 $font;
+        }
+      }
+
+      &__main {
+        margin: 0 0 24px 0;
+
+        @media (max-width: $sm) {
+          margin: 0 0 16px 0;
+        }
+
+        h1 {
+          margin: 0 0 16px 0;
+
+          @media (min-width: $sm) {
+            font-size: 48px;
+          }
+        }
+
+        h5 {
+          font-weight: 600;
+        }
+      }
+
+      &__actions {
+        display: flex;
+        gap: 24px;
+        margin: 0 0 20px 0;
+
+        @media (max-width: $sm) {
+          margin: 0 0 12px 0;
+        }
+      }
+
+      &__cep {
+
+        form {
+          position: relative;
+
+          button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 24px;
+            padding: 8px 16px;
+            display: block;
+            border-radius: 1000px;
+            background: $white;
+            font: 600 14px/1 $font;
+          }
+        }
+      }
+
+      input,
+      select {
+        display: block;
+        width: 100%;
+        font: 500 15px/1 $font;
+        background: $white;
+        border: 1px solid $light-gray;
+        border-radius: 4px;
+        padding: 16px 24px 16px 20px;
+      }
+
+      fieldset {
+        flex: 1;
+      }
+
+      label {
+        display: block;
+        color: $gray;
+        font: 500 14px/1 $font;
+        margin: 0 0 10px 0;
+      }
+
+      .button {
+        margin: 40px 0 0 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__tabs {
+    padding: 120px 0 0 0;
+  
+    @media (max-width: $sm) {
+      padding: 80px 0 0 0;
+    }
+
+    .container {
+
+      h2 {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 0 40px 0;
+
+        @media (max-width: $sm) {
+          margin: 0 0 24px 0;
+        }
+      }
+
+      nav {
+        display: flex;
+        border-bottom: 1px solid $light-gray;
+        gap: 40px;
+        margin: 0 0 40px 0;
+        overflow-x: auto;
+
+        @media (max-width: $sm) {
+          margin: 0 0 24px 0;
+          gap: 32px;
+        }
+
+        button {
+          color: $gray;
+          white-space: nowrap;
+          padding: 0 0 24px 0;
+          font: 600 18px/1 $font;
+          border-bottom: 2px solid transparent;
+
+          &.active {
+            border-color: 2px solid $red;
+            color: $black;
+            border-color: $red;
+          }
+          
+          &:hover {
+            color: $black;
+          }
+        }
+      }
+
+      section {
+        display: none;
+
+        &.active {
+          display: flex;
+        }
+
+        p {
+          max-width: 800px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  &__relateds {
+    padding: 120px 0 0 0;
+  
+    @media (max-width: $sm) {
+      padding: 80px 0 0 0;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 64px;
+
+      @media (max-width: $sm) {
+        gap: 40px;
+      }
+    }
+  }
+}

@@ -59,7 +59,14 @@ const play = document.querySelector(".solution__banner2 button[data-video]");
 
 if (play) {
   const video = document.querySelector(".solution__banner2 video");
+
+  if (!video.paused) {
+    play.classList.add("pause");
+  }
+
   play.addEventListener("click", () => {
-    video.paused ? (video.play(), play.classList.add("pause")) : (video.pause(), play.classList.remove("pause"));
+    video.paused
+      ? (video.play(), play.classList.add("pause"))
+      : (video.pause(), play.classList.remove("pause"));
   });
 }
